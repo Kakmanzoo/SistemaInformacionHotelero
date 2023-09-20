@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JK hotel - Habitación</title>
+    <style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Color de fondo */
+    margin: 0;
+    padding: 0;
+}
+
+
+h1 {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #007bff; /* Color de fondo del encabezado */
+    color: #fff; /* Color de texto del encabezado */
+}
+
+
+#divisa {
+    margin: 20px auto;
+    display: block;
+    width: 100px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.habitaciones {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+
+.habitacion {
+    width: 45%; /* Ancho de las habitaciones */
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #fff; /* Color de fondo de las habitaciones */
+}
+
+
+h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+
+p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+
+.precio {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.2em;
+}
+
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Selección de Habitación</h1>
+
+    <select id="divisa" onchange="convertirDivisa()">
+        <option value="COP">COP</option>
+        <option value="USD">USD</option>
+    </select>
+
+    <div class="habitaciones">
+        <div class="habitacion">
+            <h2>Suite Junior Personal</h2>
+            <!--Para mi computador-->
+            <!--<img src="C:\Users\Equipo\OneDrive\Documentos\Trabajos Programacion UDC\Modulo 2.2/habitacionJunior.jpg" alt="habitacion 1">--> 
+            <!--Para los archivos internos del código-->
+            <img src="D:\Trabajo de Sistema de Información\Images\habitacionJunior.jpg" alt="habitacion 1">
+            <p>Descripción de la habitación 1.</p>
+            <span class="precio">$980,000 COP</span>
+            <a href="login.html" style="text-decoration: none;">
+            <button>La quiero</button>
+        </div>
+
+        <div class="habitacion">
+            <h2>Suite Premium Cama King</h2>
+            <!--Para mi computador-->
+            <!--<img src="C:\Users\Equipo\OneDrive\Documentos\Trabajos Programacion UDC\Modulo 2.2/habitacionPremium.jpg" alt="habitacion 2">-->
+            <!--Para los archivos internos del código-->
+            <img src="D:\Trabajo de Sistema de Información\Images\habitacionPremium.jpg" alt="Habitación 2">
+            <p>Descripción de la habitación 2.</p>
+            <span class="precio">$1,670,000 COP</span>
+            <a href="login.html" style="text-decoration: none;">
+            <button>La quiero</button>
+        </div>
+    </div>
+
+    <script>
+        function convertirDivisa() {
+            const divisa = document.getElementById("divisa").value;
+            const precios = document.querySelectorAll(".precio");
+
+            for (let i = 0; i < precios.length; i++) {
+                if (divisa === "USD") {
+                    const precioCOP = parseFloat(precios[i].innerText.replace("$", "").replace(",", ""));
+                    const precioUSD = precioCOP / 4000;
+                    precios[i].innerText = "$" + precioUSD.toFixed(2) + " USD";
+                } else {
+                    const precioUSD = parseFloat(precios[i].innerText.replace("$", "").replace(" USD", ""));
+                    const precioCOP = precioUSD * 4000;
+                    precios[i].innerText = "$" + precioCOP.toFixed(2) + " COP";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

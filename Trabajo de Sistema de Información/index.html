@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script>
+        function CambiarModo() {
+            var body = document.body;
+            body.classList.toggle("dark-mode");
+        }
+
+        function validarFormulario() {
+            var fechaLlegada = new Date(document.getElementById("fecha-llegada").value);
+            var fechaSalida = new Date(document.getElementById("fecha-salida").value);
+            var adultos = document.getElementById("cantidad-personas").value;
+
+            if (fechaLlegada && fechaSalida && adultos) {
+                document.getElementById("reservar-btn").disabled = false;
+
+                fechaLlegada.setDate(fechaLlegada.getDate() + 1);
+                var fechaMinimaSalida = fechaLlegada.toISOString().split("T")[0];
+                document.getElementById("fecha-salida").min = fechaMinimaSalida;
+            } else {
+                document.getElementById("reservar-btn").disabled = true;
+            }
+        }
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel JK</title>
+    <style>
+
+          .desktop {
+            width: 1600px;
+            height: min-content; /* 1200px */
+            min-height: 1200;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background: linear-gradient(180deg, #fff5f5 11.815066945833955%, hsl(0, 0%, 0%) 100%);
+            overflow: hidden;
+            padding: 0px 0px 0px 0px;
+            align-content: center;
+            flex-wrap: nowrap;
+            gap: 13;
+            position: absolute;
+            border-radius: 0px 0px 0px 0px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="date"],
+        input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+
+        body.dark-mode {
+            background-color: #000000;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reserva Ahora</h1>
+    <form action="#" method="post">
+        <div>
+            <label for="fecha-llegada">Fecha de Ingreso:</label>
+            <input type="date" id="fecha-llegada" name="fecha-llegada" onchange="validarFormulario()" required>
+        </div>
+
+        <div>
+            <label for="fecha-salida">Fecha de Salida:</label>
+            <input type="date" id="fecha-salida" name="fecha-salida"required>
+        </div>
+
+        <div>
+            <label for="cantidad-personas">Cantidad de Adultos (+18):</label>
+            <input type="number" id="cantidad-personas" name="cantidad-personas" min="1" max="6" required onchange="validarFormulario()">
+
+            <label for="cantidad-ninos">Cantidad de niños (3-17) (opcional):</label>
+            <input type="number" id="cantidad-ninos" name="cantidad-ninos" min="0" max="6" onchange="validarFormulario()">
+        </div>
+        <div>
+            <a href="habitacion.html" style="text-decoration: none; color: #fff;">
+                <button type="button" id="reservar-btn" disabled style="background-color: #333; color: #ffffff; padding: 10px 20px; border: none; cursor: pointer;">Reservar</button>
+            </a>
+        </div>    
+    <h2>Modo Claro/Oscuro</h2>
+    <button id="logo-button" style="width: 100px; height: 80px;">
+        <!--Para mi computador-->
+        <!--<img src="C:\Users\Equipo\OneDrive\Documentos\Trabajos Programacion UDC\Modulo 2.2/bombilla.png" style="width: 50px; height: auto;">-->
+        <!--Para los archivos internos del código-->
+        <img src="D:\Trabajo de Sistema de Información\Images\bombilla.png" style="width: 50px; height: auto;">
+    </button>
+</body>
+</html>
+
+<script>
+    document.getElementById("logo-button").addEventListener("click", function() {
+        var body = document.body;
+        body.classList.toggle("dark-mode");
+    });
+</script>
